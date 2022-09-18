@@ -10,9 +10,10 @@ import Foundation
 class NetworkService {
 	
 	enum ResponseErrors: Error {
-		case invalidResponse
-		case parseError
+		case invalidResponse(String)
+		case parseError(String)
 		// Add other custom error here
+		
 	}
 	
 	enum HttpMethod: String {
@@ -27,7 +28,7 @@ class NetworkService {
 	
 	func searchForImages(queryString: String, pageNumber: Int = 10, pageSize: Int = 10, completion: @escaping (Result<SearchResponseModel, Error>) -> Void) {
 		
-		var domain = "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI"
+		var domain = Constants.API.domain
 		
 		domain.append("?q=\(queryString)")
 		domain.append("&\(pageNumber)")
@@ -37,8 +38,8 @@ class NetworkService {
 		guard let searchURL = URL(string: domain) else { return }
 		
 		let headers = [
-			"X-RapidAPI-Key": "",
-			"X-RapidAPI-Host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+			Constants.API.apiKey: Constants.API.apiValue,
+			Constants.API.hostKey: Constants.API.hostValue
 		]
 		
 		var request = URLRequest(url: searchURL)
@@ -55,14 +56,14 @@ class NetworkService {
 			}
 			
 			guard let response = response as? HTTPURLResponse else {
-				completion(.failure(ResponseErrors.invalidResponse))
+				completion(.failure(ResponseErrors.invalidResponse(Constants.unexpectedResponseErrorString)))
 				return
 			}
 			
 			print("Response status code: \(response.statusCode)")
 			
 			guard let data = data else {
-				completion(.failure(ResponseErrors.invalidResponse))
+				completion(.failure(ResponseErrors.invalidResponse(Constants.unexpectedResponseErrorString)))
 				return
 			}
 			
@@ -74,7 +75,8 @@ class NetworkService {
 					completion(.success(jsonData))
 				}
 			} catch let error {
-				completion(.failure(error))
+				print("Parse error: \(error.localizedDescription)")
+				completion(.failure(ResponseErrors.parseError(Constants.parsingErrorString)))
 			}
 		}
 		
