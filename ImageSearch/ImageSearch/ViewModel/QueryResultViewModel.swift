@@ -14,7 +14,7 @@ protocol QueryResultDelegate {
 class QueryResultViewModel {
 		
 	private var networkService = NetworkService()
-	private var imageResults = [ImageQueryModel]()
+	var imageResults = [ImageQueryModel]()
 	
 	var queryResultDelegate: QueryResultDelegate?
 	
