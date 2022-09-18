@@ -22,6 +22,9 @@ class HomeViewController: UIViewController {
 		setupUI()
 		
 		resultViewModel.queryResultDelegate = self
+		resultViewModel.searchQuery(queryString: "taylor") {
+			self.resultTableView.reloadData()
+		}
 	}
 	
 	func setupUI() {
