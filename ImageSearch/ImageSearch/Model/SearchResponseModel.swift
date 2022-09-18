@@ -9,7 +9,7 @@ import Foundation
 
 struct SearchResponseModel: Decodable {
 	let _type: String?
-	let totalCount: Int?
+	let totalCount: Int
 	
-	let value: [ImageQueryModel]?
+	let value: [ImageQueryModel]
 }
