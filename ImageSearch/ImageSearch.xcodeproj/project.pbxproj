@@ -22,6 +22,7 @@
 		44A4628128D71DEB0060AB2A /* ImageResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A4627F28D71DEB0060AB2A /* ImageResultTableViewCell.xib */; };
 		44A4628528D726400060AB2A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628428D726400060AB2A /* NetworkService.swift */; };
 		44A4628728D730720060AB2A /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628628D730720060AB2A /* ImageViewModel.swift */; };
+		44A4628B28D752790060AB2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628A28D752790060AB2A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		44A4627F28D71DEB0060AB2A /* ImageResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageResultTableViewCell.xib; sourceTree = "<group>"; };
 		44A4628428D726400060AB2A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		44A4628628D730720060AB2A /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		44A4628A28D752790060AB2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				44A4628428D726400060AB2A /* NetworkService.swift */,
+				44A4628A28D752790060AB2A /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				44A4624828D715D90060AB2A /* SceneDelegate.swift in Sources */,
 				44A4628528D726400060AB2A /* NetworkService.swift in Sources */,
 				44A4627B28D7199C0060AB2A /* SearchResponseModel.swift in Sources */,
+				44A4628B28D752790060AB2A /* Constants.swift in Sources */,
 				44A4628028D71DEB0060AB2A /* ImageResultTableViewCell.swift in Sources */,
 				44A4628728D730720060AB2A /* ImageViewModel.swift in Sources */,
 				44A4627928D718AA0060AB2A /* HomeViewController.swift in Sources */,
