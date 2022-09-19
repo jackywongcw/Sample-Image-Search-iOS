@@ -27,6 +27,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-La-jvK">
                                 <rect key="frame" x="0.0" y="81" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Nxd-f6-2eY"/>
+                                </connections>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA7-ny-jA9">
                                 <rect key="frame" x="16" y="60" width="382" height="21"/>
@@ -52,6 +55,7 @@
                     </view>
                     <connections>
                         <outlet property="resultTableView" destination="WN8-of-ku4" id="TUC-aa-0ng"/>
+                        <outlet property="searchBar" destination="xNU-La-jvK" id="27T-3z-d2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
