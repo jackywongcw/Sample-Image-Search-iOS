@@ -10,6 +10,7 @@ import Foundation
 struct ImageQueryModel: Decodable {
 	
 	let url: String?
+	let imageData: Data?
 	let height: Int?
 	let width: Int?
 	let thumbnail: String?
@@ -17,7 +18,7 @@ struct ImageQueryModel: Decodable {
 	let thumbnailWidth: Int?
 	let name: String?
 	let title: String?
-	//provider:
+	let provider: ProviderModel?
 	let imageWebSearchUrl: String?
 	let webpageUrl: String?
 	
