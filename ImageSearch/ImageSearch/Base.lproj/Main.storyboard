@@ -8,20 +8,59 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImageSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="ImageSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WN8-of-ku4">
+                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="PrL-UF-7aA"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JGh-yn-lNP"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-La-jvK">
+                                <rect key="frame" x="0.0" y="81" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Nxd-f6-2eY"/>
+                                </connections>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA7-ny-jA9">
+                                <rect key="frame" x="16" y="60" width="382" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GA7-ny-jA9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3lJ-qg-vwa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WN8-of-ku4" secondAttribute="bottom" id="4ua-Vp-dNt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WN8-of-ku4" secondAttribute="trailing" id="5xg-Up-Evu"/>
+                            <constraint firstItem="xNU-La-jvK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Azt-rS-ITd"/>
+                            <constraint firstItem="WN8-of-ku4" firstAttribute="top" secondItem="xNU-La-jvK" secondAttribute="bottom" id="Q59-F4-aWc"/>
+                            <constraint firstItem="WN8-of-ku4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SXB-rg-UGZ"/>
+                            <constraint firstItem="xNU-La-jvK" firstAttribute="top" secondItem="GA7-ny-jA9" secondAttribute="bottom" id="XFV-wa-sfL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GA7-ny-jA9" secondAttribute="trailing" constant="16" id="iEV-hB-38m"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xNU-La-jvK" secondAttribute="trailing" id="iSB-sq-Qcc"/>
+                            <constraint firstItem="GA7-ny-jA9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="pFU-0V-Hpr"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="resultTableView" destination="WN8-of-ku4" id="TUC-aa-0ng"/>
+                        <outlet property="searchBar" destination="xNU-La-jvK" id="27T-3z-d2s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10" y="125"/>
+            <point key="canvasLocation" x="-10.144927536231885" y="124.55357142857142"/>
         </scene>
     </scenes>
     <resources>
