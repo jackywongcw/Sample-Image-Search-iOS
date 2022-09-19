@@ -37,29 +37,18 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if isFirstLoad || resultViewModel.imageResults.isEmpty {
-			return 1
-		} else {
-			return resultViewModel.imageResults.count
-		}
+			return resultViewModel.imageResults.count == 0 ? 0 : resultViewModel.imageResults.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let cell = tableView.dequeueReusableCell(withIdentifier: imageCellId, for: indexPath) as! ImageResultTableViewCell
 		
-		if isFirstLoad {
-			// Initial cell
-			cell.titleLabel.text = "Type something in the search bar for result!"
-		} else if resultViewModel.imageResults.count == 0 {
-			// Empty cell
-			cell.titleLabel.text = "No result for your search term :("
-		} else {
-			// Data cell
-			let viewModel = resultViewModel.imageResults[indexPath.row]
-			
-			cell.titleLabel.text = viewModel.title
-		}
+		// Data cell
+		let viewModel = resultViewModel.imageResults[indexPath.row]
+		
+		cell.titleLabel.text = viewModel.title
+		
 		return cell
 	}
 	
