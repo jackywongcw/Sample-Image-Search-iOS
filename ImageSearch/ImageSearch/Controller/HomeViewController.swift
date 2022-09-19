@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
 		
 		// Create indicator programatically instead of storyboard
 		indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-		indicator.style = .large
+		indicator.style = .medium
 		indicator.hidesWhenStopped = true
 		indicator.center = self.view.center
 		self.view.addSubview(indicator)
@@ -50,6 +50,19 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 			return resultViewModel.imageResults.count == 0 ? 0 : resultViewModel.imageResults.count
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		let lastSectionIndex = resultTableView.numberOfSections - 1
+		let lastRowIndex = resultTableView.numberOfRows(inSection: lastSectionIndex) - 1
+		if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+			let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+			indicator.style = .medium
+			indicator.startAnimating()
+			
+			self.resultTableView.tableFooterView = indicator
+			self.resultTableView.tableFooterView?.isHidden = false
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,6 +92,10 @@ extension HomeViewController: QueryResultDelegate {
 	func didFetchQuery(_ imageResults: [ImageQueryModel], error: Error?) {
 		indicator.stopAnimating()
 		resultTitleLabel.isHidden = false
+		
+		resultTableView.tableFooterView?.isHidden = true
+		resultTableView.tableFooterView = nil
+		
 		resultTitleLabel.text = "\(imageResults.count) results"
 		
 		if let error = error {
