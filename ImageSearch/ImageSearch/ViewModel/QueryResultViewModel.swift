@@ -30,6 +30,8 @@ class QueryResultViewModel {
 	
 	func searchQuery(queryString: String) {
 		
+		queryResultDelegate?.willFetchQuery()
+		
 		networkService.searchForImages(queryString: queryString) { [weak self] result in
 						
 			switch result {
