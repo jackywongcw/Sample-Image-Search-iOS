@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WN8-of-ku4">
-                                <rect key="frame" x="0.0" y="132" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="184" width="414" height="678"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="PrL-UF-7aA"/>
@@ -25,36 +25,51 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xNU-La-jvK">
-                                <rect key="frame" x="0.0" y="81" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="80.5" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Nxd-f6-2eY"/>
                                 </connections>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GA7-ny-jA9">
-                                <rect key="frame" x="16" y="60" width="382" height="21"/>
+                                <rect key="frame" x="16" y="60" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4m7-W7-LZt">
+                                <rect key="frame" x="16" y="147.5" width="382" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AxI-a0-EC5">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="WN8-of-ku4" firstAttribute="top" secondItem="4m7-W7-LZt" secondAttribute="bottom" constant="16" id="0Rm-rz-Ljw"/>
                             <constraint firstItem="GA7-ny-jA9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="3lJ-qg-vwa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WN8-of-ku4" secondAttribute="bottom" id="4ua-Vp-dNt"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WN8-of-ku4" secondAttribute="trailing" id="5xg-Up-Evu"/>
                             <constraint firstItem="xNU-La-jvK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Azt-rS-ITd"/>
-                            <constraint firstItem="WN8-of-ku4" firstAttribute="top" secondItem="xNU-La-jvK" secondAttribute="bottom" id="Q59-F4-aWc"/>
+                            <constraint firstItem="4m7-W7-LZt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="RDp-xt-3Oo"/>
                             <constraint firstItem="WN8-of-ku4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SXB-rg-UGZ"/>
                             <constraint firstItem="xNU-La-jvK" firstAttribute="top" secondItem="GA7-ny-jA9" secondAttribute="bottom" id="XFV-wa-sfL"/>
+                            <constraint firstItem="4m7-W7-LZt" firstAttribute="top" secondItem="xNU-La-jvK" secondAttribute="bottom" constant="16" id="a5y-t4-HND"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GA7-ny-jA9" secondAttribute="trailing" constant="16" id="iEV-hB-38m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xNU-La-jvK" secondAttribute="trailing" id="iSB-sq-Qcc"/>
                             <constraint firstItem="GA7-ny-jA9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="pFU-0V-Hpr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4m7-W7-LZt" secondAttribute="trailing" constant="16" id="qYK-Xz-SEN"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="resultTableView" destination="WN8-of-ku4" id="TUC-aa-0ng"/>
+                        <outlet property="resultTitleLabel" destination="AxI-a0-EC5" id="vsD-ah-w8Y"/>
                         <outlet property="searchBar" destination="xNU-La-jvK" id="27T-3z-d2s"/>
                     </connections>
                 </viewController>
