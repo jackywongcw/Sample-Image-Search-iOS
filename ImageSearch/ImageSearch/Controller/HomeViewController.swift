@@ -9,9 +9,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
 	
+	@IBOutlet var searchBar: UISearchBar!
 	@IBOutlet var resultTableView: UITableView!
 	
-	private var isFirstLoad: Bool = false
 	private var resultViewModel = QueryResultViewModel()
 	
 	let imageCellId: String = String(describing: ImageResultTableViewCell.self)
@@ -22,17 +22,17 @@ class HomeViewController: UIViewController {
 		setupUI()
 		
 		resultViewModel.queryResultDelegate = self
-		resultViewModel.searchQuery(queryString: "taylor") {
-			self.resultTableView.reloadData()
-		}
 	}
 	
 	func setupUI() {
-		resultTableView.register(UINib(nibName: "ImageResultTableViewCell", bundle: nil), forCellReuseIdentifier: imageCellId)
 		
+		// TableView and SearchBar delegates are set through storyboard.
+		// Can also set here if through code
+		
+		resultTableView.register(UINib(nibName: "ImageResultTableViewCell", bundle: nil), forCellReuseIdentifier: imageCellId)
+		resultTableView.keyboardDismissMode = .onDrag
 		
 	}
-	
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -56,12 +56,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 			cell.titleLabel.text = "No result for your search term :("
 		} else {
 			// Data cell
-			cell.titleLabel.text = "Hello!"
+			let viewModel = resultViewModel.imageResults[indexPath.row]
+			
+			cell.titleLabel.text = viewModel.title
 		}
-		
-		
 		return cell
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		searchBar.endEditing(true)
+	}
+	
 }
 
 extension HomeViewController: QueryResultDelegate {
@@ -70,13 +75,45 @@ extension HomeViewController: QueryResultDelegate {
 	}
 	
 	func didFetchQuery(_ imageResults: [ImageQueryModel], error: Error?) {
-		print("")
+		
 		if let error = error {
+			let alert = UIAlertController(title: Constants.Error.title,
+										  message: error.localizedDescription,
+										  preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: Constants.Button.okay, style: .default, handler: { action in
+				self.resultTableView.reloadData()
+			}))
 			
-		} else {
-			resultTableView.reloadData()
+			self.present(alert, animated: true)
+			
 		}
+		resultTableView.reloadData()
+	}
+}
+
+extension HomeViewController: UISearchBarDelegate {
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
 	}
 	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		
+		guard let searchQuery = searchBar.text else { return }
+		
+		guard !searchQuery.isEmpty else {
+			resultViewModel.emptyQueryFlow()
+			return
+		}
+		
+		print("SearchQuery =  \(searchQuery)")
+		
+		resultViewModel.searchQuery(queryString: searchQuery)
+		searchBar.endEditing(true)
+	}
 	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		searchBar.endEditing(true)
+		resultViewModel.clearResults()
+	}
 }
