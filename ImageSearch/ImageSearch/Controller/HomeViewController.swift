@@ -104,26 +104,29 @@ extension HomeViewController: QueryResultDelegate {
 	}
 	
 	func didFetchQuery(_ imageResults: [ImageQueryModel], error: Error?) {
-		indicator.stopAnimating()
-		resultTitleLabel.isHidden = false
-		
-		resultTableView.tableFooterView?.isHidden = true
-		resultTableView.tableFooterView = nil
-		
-		resultTitleLabel.text = "\(imageResults.count) results"
-		
-		if let error = error {
-			let alert = UIAlertController(title: Constants.Error.title,
-										  message: error.localizedDescription,
-										  preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: Constants.Button.okay, style: .default, handler: { action in
-				self.resultTableView.reloadData()
-			}))
+		DispatchQueue.main.async {
 			
-			self.present(alert, animated: true)
+			self.indicator.stopAnimating()
+			self.resultTitleLabel.isHidden = false
 			
+			self.resultTableView.tableFooterView?.isHidden = true
+			self.resultTableView.tableFooterView = nil
+			
+			self.resultTitleLabel.text = "\(imageResults.count) results"
+			
+			if let error = error {
+				let alert = UIAlertController(title: Constants.Error.title,
+											  message: error.localizedDescription,
+											  preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: Constants.Button.okay, style: .default, handler: { action in
+					self.resultTableView.reloadData()
+				}))
+				
+				self.present(alert, animated: true)
+				
+			}
+			self.resultTableView.reloadData()
 		}
-		resultTableView.reloadData()
 	}
 }
 
