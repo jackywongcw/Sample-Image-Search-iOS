@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
 	}
 }
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 			return resultViewModel.imageResults.count == 0 ? 0 : resultViewModel.imageResults.count
 	}
@@ -81,6 +81,20 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 		searchBar.endEditing(true)
 	}
 	
+	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+		
+		print("Prefetching ... \(indexPaths)")
+		for indexPath in indexPaths {
+			resultViewModel.downloadImageForIndexPath(indexPath)
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+		
+		for indexPath in indexPaths {
+			resultViewModel.cancelDownloadingImages(indexPath)
+		}
+	}
 }
 
 extension HomeViewController: QueryResultDelegate {
