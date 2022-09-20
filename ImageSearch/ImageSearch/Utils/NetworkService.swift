@@ -82,4 +82,23 @@ class NetworkService {
 		
 		dataTask.resume()
 	}
+	
+	func downloadImage(urlString: String, completion: @escaping (Data?) -> Void) {
+		
+		print("Downloading image ... ")
+		guard let url = URL(string: urlString) else {
+			return
+		}
+		
+		let task = URLSession.shared.dataTask(with: url) { data, response, error in
+			guard let data = data else { return }
+			
+//			DispatchQueue.main.async {
+//
+//			}
+			
+			completion(data)
+		}
+		task.resume()
+	}
 }
