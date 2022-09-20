@@ -18,6 +18,8 @@ class ImageResultTableViewCell: UITableViewCell {
 	@IBOutlet var webpageTitleLabel: UILabel!
 	@IBOutlet var webpageValueLabel: UILabel!
 
+	private var networkService = NetworkService()
+	
     override func awakeFromNib() {
         super.awakeFromNib()
 		setupUI()
@@ -37,10 +39,36 @@ class ImageResultTableViewCell: UITableViewCell {
 		
 		webpageTitleLabel.text = "Webpage URL:"
 		webpageValueLabel.text = model.webpageUrl
+		
+		if let imageData = model.mainImageData {
+			mainImageView.image = UIImage(data: imageData)
+		} else {
+			networkService.downloadImage(urlString: model.url) { [weak self] imageData in
+				guard let imageData = imageData else { return }
+				DispatchQueue.main.async {
+					self?.mainImageView.image = UIImage(data: imageData)
+				}
+			}
+		}
+		
+		if let thumbnailData = model.thumbnailImageData {
+			thumbnailImageView.image = UIImage(data: thumbnailData)
+		} else {
+			networkService.downloadImage(urlString: model.thumbnail) { [weak self] imageData in
+				guard let imageData = imageData else { return }
+				DispatchQueue.main.async {
+					self?.thumbnailImageView.image = UIImage(data: imageData)
+				}
+			}
+		}
 	}
 	
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+	override func prepareForReuse() {
+		mainImageView.image = nil
+		thumbnailImageView.image = nil
+	}
 }
