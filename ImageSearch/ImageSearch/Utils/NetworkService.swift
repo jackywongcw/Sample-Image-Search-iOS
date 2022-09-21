@@ -26,13 +26,13 @@ class NetworkService {
 		}
 	}
 	
-	func searchForImages(queryString: String, pageNumber: Int = 10, pageSize: Int = 10, completion: @escaping (Result<SearchResponseModel, Error>) -> Void) {
+	func searchForImages(queryString: String, pageNumber: Int, pageSize: Int = 10, completion: @escaping (Result<SearchResponseModel, Error>) -> Void) {
 		
 		var domain = Constants.API.domain
 		
 		domain.append("?q=\(queryString)")
-		domain.append("&\(pageNumber)")
-		domain.append("&\(pageSize)")
+		domain.append("&pageNumber=\(pageNumber)")
+		domain.append("&pageSize=\(pageSize)")
 		domain.append("&autoCorrect=true")
 		
 		guard let searchURL = URL(string: domain) else { return }
@@ -42,6 +42,7 @@ class NetworkService {
 			Constants.API.hostKey: Constants.API.hostValue
 		]
 		
+		print("API URL = \(searchURL)")
 		var request = URLRequest(url: searchURL)
 		request.httpMethod = HttpMethod.get.method
 		request.allHTTPHeaderFields = headers
