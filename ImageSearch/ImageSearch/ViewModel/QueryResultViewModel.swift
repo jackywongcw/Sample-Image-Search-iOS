@@ -31,18 +31,43 @@ class QueryResultViewModel {
 	var mainImageTasks = [URLSessionTask]()
 	var thumbnailImageTasks = [URLSessionTask]()
 	
-	func searchQuery(queryString: String) {
+	var searchQueryString: String = ""
+	var queryPageNumber: Int = 1
+	var isFetching = false
+	
+	func searchQuery(pagination: Bool = false) {
 		
-		queryResultDelegate?.willFetchQuery()
+		guard !searchQueryString.isEmpty else {
+			emptyQueryFlow()
+			return
+		}
 		
-		networkService.searchForImages(queryString: queryString) { [weak self] result in
-						
+		if !pagination {
+			queryResultDelegate?.willFetchQuery()
+			prepareForNewSearch()
+		}
+		
+		guard !isFetching else {
+			print("Fetching in progress ...")
+			return
+		}
+		
+		isFetching = true
+		
+		networkService.searchForImages(queryString: searchQueryString, pageNumber: queryPageNumber) { [weak self] result in
+			
 			switch result {
 				
 			case .success(let searchResult):
 				print("success!")
 				print("result = \(result)")
-				self?.imageResults = searchResult.value
+				if pagination {
+					// Add to exiting results if pagination
+					self?.imageResults += (searchResult.value)
+				} else {
+					// Non pagination (first query)
+					self?.imageResults = searchResult.value
+				}
 				self?.queryResultDelegate?.didFetchQuery(self?.imageResults ?? [], error: nil)
 				break
 				
@@ -52,6 +77,10 @@ class QueryResultViewModel {
 				break
 			}
 			
+			self?.isFetching = false
+			
+			// Increment for next page pagination
+			self?.queryPageNumber += 1
 		}
 	}
 	
