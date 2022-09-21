@@ -133,7 +133,8 @@ extension HomeViewController: QueryResultDelegate {
 extension HomeViewController: UISearchBarDelegate {
 	
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		
+		searchBar.setShowsCancelButton(!searchText.isEmpty, animated: true)
+		resultViewModel.clearResults()
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -150,8 +151,16 @@ extension HomeViewController: UISearchBarDelegate {
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.endEditing(true)
+		searchBar.showsCancelButton = false
+		searchBar.text?.removeAll()
 		resultViewModel.clearResults()
 	}
+	
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		searchBar.setShowsCancelButton(searchBar.text?.isEmpty ?? false, animated: true)
+	}
+}
+
 extension HomeViewController: UIScrollViewDelegate {
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let position = scrollView.contentOffset.y
