@@ -155,4 +155,13 @@ extension HomeViewController: UISearchBarDelegate {
 		searchBar.endEditing(true)
 		resultViewModel.clearResults()
 	}
+extension HomeViewController: UIScrollViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		let position = scrollView.contentOffset.y
+		let contentHeight = resultTableView.contentSize.height
+		if position > contentHeight - scrollView.frame.size.height*2 {
+			// Fetch for next page
+			resultViewModel.searchQuery(pagination: true)
+		}
+	}
 }
