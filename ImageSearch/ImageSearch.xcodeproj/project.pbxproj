@@ -23,6 +23,7 @@
 		44A4628528D726400060AB2A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628428D726400060AB2A /* NetworkService.swift */; };
 		44A4628928D741C10060AB2A /* QueryResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628828D741C10060AB2A /* QueryResultViewModel.swift */; };
 		44A4628B28D752790060AB2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628A28D752790060AB2A /* Constants.swift */; };
+		44A4628E28D8BA550060AB2A /* ProviderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628D28D8BA550060AB2A /* ProviderModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		44A4628428D726400060AB2A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		44A4628828D741C10060AB2A /* QueryResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryResultViewModel.swift; sourceTree = "<group>"; };
 		44A4628A28D752790060AB2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		44A4628D28D8BA550060AB2A /* ProviderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				44A4627A28D7199C0060AB2A /* SearchResponseModel.swift */,
 				44A4627C28D71A150060AB2A /* ImageQueryModel.swift */,
+				44A4628D28D8BA550060AB2A /* ProviderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A4628E28D8BA550060AB2A /* ProviderModel.swift in Sources */,
 				44A4624628D715D90060AB2A /* AppDelegate.swift in Sources */,
 				44A4627D28D71A150060AB2A /* ImageQueryModel.swift in Sources */,
 				44A4624828D715D90060AB2A /* SceneDelegate.swift in Sources */,
