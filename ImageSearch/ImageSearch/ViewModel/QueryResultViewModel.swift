@@ -159,4 +159,9 @@ class QueryResultViewModel {
 		self.queryResultDelegate?.didFetchQuery([], error: QueryResultError.emptyQuery)
 	}
 	
+	func prepareForNewSearch() {
+		queryPageNumber = 1
+		imageResults.removeAll()
+		queryResultDelegate?.didFetchQuery(imageResults, error: nil)
+	}
 }
