@@ -140,14 +140,11 @@ extension HomeViewController: UISearchBarDelegate {
 		
 		guard let searchQuery = searchBar.text else { return }
 		
-		guard !searchQuery.isEmpty else {
-			resultViewModel.emptyQueryFlow()
-			return
-		}
+		resultViewModel.searchQueryString = searchQuery
 		
 		print("SearchQuery =  \(searchQuery)")
 		
-		resultViewModel.searchQuery(queryString: searchQuery)
+		resultViewModel.searchQuery()
 		searchBar.endEditing(true)
 	}
 	
