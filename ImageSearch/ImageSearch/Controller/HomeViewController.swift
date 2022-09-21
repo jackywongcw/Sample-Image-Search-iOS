@@ -133,26 +133,41 @@ extension HomeViewController: QueryResultDelegate {
 extension HomeViewController: UISearchBarDelegate {
 	
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		
+		searchBar.setShowsCancelButton(!searchText.isEmpty, animated: true)
+		resultViewModel.clearResults()
 	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		
 		guard let searchQuery = searchBar.text else { return }
 		
-		guard !searchQuery.isEmpty else {
-			resultViewModel.emptyQueryFlow()
-			return
-		}
+		resultViewModel.searchQueryString = searchQuery
 		
 		print("SearchQuery =  \(searchQuery)")
 		
-		resultViewModel.searchQuery(queryString: searchQuery)
+		resultViewModel.searchQuery()
 		searchBar.endEditing(true)
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.endEditing(true)
+		searchBar.showsCancelButton = false
+		searchBar.text?.removeAll()
 		resultViewModel.clearResults()
+	}
+	
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		searchBar.setShowsCancelButton(searchBar.text?.isEmpty ?? false, animated: true)
+	}
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		let position = scrollView.contentOffset.y
+		let contentHeight = resultTableView.contentSize.height
+		if position > contentHeight - scrollView.frame.size.height*2 {
+			// Fetch for next page
+			resultViewModel.searchQuery(pagination: true)
+		}
 	}
 }
