@@ -14,7 +14,10 @@ class HomeViewController: UIViewController {
 	
 	@IBOutlet var resultTitleLabel: UILabel!
 	
-	private var resultViewModel = QueryResultViewModel()
+	private var resultViewModel = QueryResultViewModel(searchResponseModel: SearchResponseModel(_type: "",
+																								totalCount: 0,
+																								value: [ImageQueryModel]()))
+	
 	var indicator = UIActivityIndicatorView()
 	
 	let imageCellId: String = String(describing: ImageResultTableViewCell.self)
