@@ -1,0 +1,42 @@
+{
+	"_type": "images",
+	"totalCount": 2,
+	"value": [
+		{
+			"url": "https://www.pinkvilla.com/files/styles/fbimagesection/public/taylor_swift_birthday.jpeg?itok=VRq6drie",
+			"height": 310,
+			"width": 580,
+			"thumbnail": "https://rapidapi.usearch.com/api/thumbnail/get?value=8039867206085482440",
+			"thumbnailHeight": 202,
+			"thumbnailWidth": 379,
+			"base64Encoding": null,
+			"name": "",
+			"title": "Taylor Swift Birthday: 6 PHOTOS of the singer's hottest looks from her performances",
+			"provider": {
+				"name": "pinkvilla",
+				"favIcon": "",
+				"favIconBase64Encoding": ""
+			},
+			"imageWebSearchUrl": "https://usearch.com/search/taylor%20swift/images",
+			"webpageUrl": "https://www.pinkvilla.com/photos/taylor-swift/taylor-swift-birthday-6-photos-singers-hottest-looks-her-performances-966132"
+		},
+		{
+			"url": "https://assets.popbuzz.com/2021/01/olivia-rodrigo-is-a-huge-taylor-swift-fan-1610112865-view-0.jpg",
+			"height": 647,
+			"width": 796,
+			"thumbnail": "https://rapidapi.usearch.com/api/thumbnail/get?value=6317284627663833104",
+			"thumbnailHeight": 161,
+			"thumbnailWidth": 198,
+			"base64Encoding": null,
+			"name": "Olivia Rodrigo Taylor Swift",
+			"title": "Taylor Swift called Olivia Rodrigo her \"baby\" - Olivia Rodrigo: 33 facts about the... - PopBuzz",
+			"provider": {
+				"name": "popbuzz",
+				"favIcon": "",
+				"favIconBase64Encoding": ""
+			},
+			"imageWebSearchUrl": "https://usearch.com/search/taylor%20swift/images",
+			"webpageUrl": "https://www.popbuzz.com/tv-film/features/olivia-rodrigo/taylor-swift/"
+		}
+	]
+}

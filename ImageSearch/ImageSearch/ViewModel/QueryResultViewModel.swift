@@ -24,6 +24,7 @@ class QueryResultViewModel {
 		}
 	}
 	private var networkService = NetworkService()
+	
 	var imageResults = [ImageQueryModel]()
 	
 	var queryResultDelegate: QueryResultDelegate?
@@ -34,6 +35,10 @@ class QueryResultViewModel {
 	var searchQueryString: String = ""
 	var queryPageNumber: Int = 1
 	var isFetching = false
+	
+	init(searchResponseModel: SearchResponseModel) {
+		self.imageResults = searchResponseModel.value
+	}
 	
 	func searchQuery(pagination: Bool = false) {
 		

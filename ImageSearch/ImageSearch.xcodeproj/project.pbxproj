@@ -24,6 +24,7 @@
 		44A4628928D741C10060AB2A /* QueryResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628828D741C10060AB2A /* QueryResultViewModel.swift */; };
 		44A4628B28D752790060AB2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628A28D752790060AB2A /* Constants.swift */; };
 		44A4628E28D8BA550060AB2A /* ProviderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4628D28D8BA550060AB2A /* ProviderModel.swift */; };
+		44ADDA6828DCD9E100DACA57 /* SampleJsonResponseWithTwoValues.json in Resources */ = {isa = PBXBuildFile; fileRef = 44ADDA6728DCD9E100DACA57 /* SampleJsonResponseWithTwoValues.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		44A4628828D741C10060AB2A /* QueryResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryResultViewModel.swift; sourceTree = "<group>"; };
 		44A4628A28D752790060AB2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		44A4628D28D8BA550060AB2A /* ProviderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderModel.swift; sourceTree = "<group>"; };
+		44ADDA6728DCD9E100DACA57 /* SampleJsonResponseWithTwoValues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleJsonResponseWithTwoValues.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		44A4627528D718570060AB2A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				44ADDA6728DCD9E100DACA57 /* SampleJsonResponseWithTwoValues.json */,
 				44A4627A28D7199C0060AB2A /* SearchResponseModel.swift */,
 				44A4627C28D71A150060AB2A /* ImageQueryModel.swift */,
 				44A4628D28D8BA550060AB2A /* ProviderModel.swift */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A4625228D715D90060AB2A /* LaunchScreen.storyboard in Resources */,
+				44ADDA6828DCD9E100DACA57 /* SampleJsonResponseWithTwoValues.json in Resources */,
 				44A4624F28D715D90060AB2A /* Assets.xcassets in Resources */,
 				44A4628128D71DEB0060AB2A /* ImageResultTableViewCell.xib in Resources */,
 				44A4624D28D715D90060AB2A /* Main.storyboard in Resources */,
