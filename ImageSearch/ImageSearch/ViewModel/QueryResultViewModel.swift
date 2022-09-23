@@ -99,6 +99,7 @@ class QueryResultViewModel {
 	private func downloadModelMainImage(_ indexPath: IndexPath) {
 		if imageResults[indexPath.row].mainImageData == nil,
 		   let mainImageURL = URL(string: imageResults[indexPath.row].url) {
+			print("Prefetching main image ... \(indexPath.row)")
 			guard mainImageTasks.firstIndex(where: { $0.originalRequest?.url == mainImageURL }) == nil else {
 				// Already downloading image
 				return
@@ -116,6 +117,7 @@ class QueryResultViewModel {
 	private func downloadModelThumbnailImage(_ indexPath: IndexPath) {
 		if imageResults[indexPath.row].thumbnailImageData == nil,
 		   let thumbnailImageURL = URL(string: imageResults[indexPath.row].url) {
+			print("Prefetching thumbnail image ... \(indexPath.row)")
 			guard thumbnailImageTasks.firstIndex(where: { $0.originalRequest?.url == thumbnailImageURL }) == nil else {
 				// Already downloading image
 				return
@@ -156,17 +158,18 @@ class QueryResultViewModel {
 	
 	func clearResults() {
 		imageResults.removeAll()
+		searchQueryString = ""
 		self.queryResultDelegate?.didFetchQuery(self.imageResults , error: nil)
 	}
 	
 	func emptyQueryFlow() {
 		imageResults.removeAll()
+		searchQueryString = ""
 		self.queryResultDelegate?.didFetchQuery([], error: QueryResultError.emptyQuery)
 	}
 	
 	func prepareForNewSearch() {
 		queryPageNumber = 1
 		imageResults.removeAll()
-		queryResultDelegate?.didFetchQuery(imageResults, error: nil)
 	}
 }

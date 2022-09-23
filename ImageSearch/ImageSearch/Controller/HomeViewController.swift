@@ -32,13 +32,14 @@ class HomeViewController: UIViewController {
 	
 	func setupUI() {
 		
-		searchBar.placeholder = "Type something to search for images"
+		searchBar.placeholder = "Search for images"
 		// TableView and SearchBar delegates are set through storyboard.
 		// Can also set here if through code
 		
 		resultTableView.register(UINib(nibName: "ImageResultTableViewCell", bundle: nil), forCellReuseIdentifier: imageCellId)
 		resultTableView.keyboardDismissMode = .onDrag
-		
+		resultTableView.bounces = false
+		resultTableView.backgroundColor = .gray
 		resultTitleLabel.isHidden = true
 		
 		// Create indicator programatically instead of storyboard
@@ -46,7 +47,10 @@ class HomeViewController: UIViewController {
 		indicator.style = .medium
 		indicator.hidesWhenStopped = true
 		indicator.center = self.view.center
+		indicator.backgroundColor = .red
+		indicator.color = .green
 		self.view.addSubview(indicator)
+		
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,6 +75,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
 		if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
 			let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
 			indicator.style = .medium
+			indicator.backgroundColor = .green
+			indicator.color = .black
 			indicator.startAnimating()
 			
 			self.resultTableView.tableFooterView = indicator
@@ -97,8 +103,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
 	}
 	
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-		
-		print("Prefetching ... \(indexPaths)")
 		for indexPath in indexPaths {
 			resultViewModel.downloadImageForIndexPath(indexPath)
 		}

@@ -9,14 +9,11 @@ import UIKit
 
 class ImageResultTableViewCell: UITableViewCell {
 	
-	@IBOutlet var mainImageView: UIImageView!
 	@IBOutlet var thumbnailImageView: UIImageView!
 	
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var providerTitleLabel: UILabel!
 	@IBOutlet var providerValueLabel: UILabel!
-	@IBOutlet var webpageTitleLabel: UILabel!
-	@IBOutlet var webpageValueLabel: UILabel!
 
 	private var networkService = NetworkService()
 	
@@ -28,7 +25,9 @@ class ImageResultTableViewCell: UITableViewCell {
 	func setupUI() {
 		titleLabel.numberOfLines = 0
 		providerValueLabel.numberOfLines = 0
-		webpageValueLabel.numberOfLines = 0
+		
+		thumbnailImageView.contentMode = .scaleAspectFill
+		thumbnailImageView.rounded()
 	}
 	
 	func setupData(model: ImageQueryModel) {
@@ -37,23 +36,11 @@ class ImageResultTableViewCell: UITableViewCell {
 		providerTitleLabel.text = "Provider:"
 		providerValueLabel.text = model.provider?.name
 		
-		webpageTitleLabel.text = "Webpage URL:"
-		webpageValueLabel.text = model.webpageUrl
-		
-		if let imageData = model.mainImageData {
-			mainImageView.image = UIImage(data: imageData)
-		} else {
-			networkService.downloadImage(urlString: model.url) { [weak self] imageData in
-				guard let imageData = imageData else { return }
-				DispatchQueue.main.async {
-					self?.mainImageView.image = UIImage(data: imageData)
-				}
-			}
-		}
-		
 		if let thumbnailData = model.thumbnailImageData {
 			thumbnailImageView.image = UIImage(data: thumbnailData)
 		} else {
+			// Using system image as placeholder image
+			thumbnailImageView.image = UIImage(systemName: "arrow.2.circlepath")
 			networkService.downloadImage(urlString: model.thumbnail) { [weak self] imageData in
 				guard let imageData = imageData else { return }
 				DispatchQueue.main.async {
@@ -68,7 +55,7 @@ class ImageResultTableViewCell: UITableViewCell {
     }
     
 	override func prepareForReuse() {
-		mainImageView.image = nil
+		super.prepareForReuse()
 		thumbnailImageView.image = nil
 	}
 }
