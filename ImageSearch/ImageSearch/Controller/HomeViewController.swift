@@ -48,11 +48,21 @@ class HomeViewController: UIViewController {
 		indicator.center = self.view.center
 		self.view.addSubview(indicator)
 	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let vc = segue.destination as? DetailViewController, let imageModel = sender as? ImageQueryModel {
+			let viewModel = ImageDetailsViewModel(imageModel: imageModel)
+			vc.viewModel = viewModel
+		}
+		
+		// else / switch for other segue
+	}
+	
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-			return resultViewModel.imageResults.count == 0 ? 0 : resultViewModel.imageResults.count
+		return resultViewModel.imageResults.count == 0 ? 0 : resultViewModel.imageResults.count
 	}
 	
 	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -82,6 +92,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, UITabl
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		searchBar.endEditing(true)
+		
+		performSegue(withIdentifier: Constants.Segue.pushToDetailVC, sender: resultViewModel.imageResults[indexPath.row])
 	}
 	
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
