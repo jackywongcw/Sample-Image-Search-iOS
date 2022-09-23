@@ -29,6 +29,9 @@ struct Constants {
 	static let unexpectedResponseErrorString = "Unexpected response from server, please try again later."
 	static let parsingErrorString = unexpectedResponseErrorString
 	
+	struct Segue {
+		static let pushToDetailVC = "pushToDetailVC"
+	}
 	
 	
 }
