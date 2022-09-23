@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension c {
+extension UIImageView {
    
 // Round Image
 	func rounded() {
